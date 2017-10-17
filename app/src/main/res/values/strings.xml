@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CloneZap</string>
+    <string name="botao_cadastrar">Cadastrar</string>
+    <string name="texto_validador">Você recebeu um SMS para a validação do seu número, digite o código de validação abaixo:</string>
+    <string name="botao_validar">Validar</string>
+    <string name="btn_login">Logar</string>
+    <string name="texto_cadastre">Não tem conta? Cadastre-se!</string>
+    <string name="title_activity_cadastro_usuario">CadastroUsuarioActivity</string>
+    <string name="item_sair">Sair</string>
+    <string name="item_configuracoes">Configurações</string>
+</resources>

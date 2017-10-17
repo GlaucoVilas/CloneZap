@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "903001812630",
+    "firebase_url": "https://clonezap-1abf8.firebaseio.com",
+    "project_id": "clonezap-1abf8",
+    "storage_bucket": "clonezap-1abf8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903001812630:android:18d1bc144ba8e8ac",
+        "android_client_info": {
+          "package_name": "com.firebase.cursoandroid.clonezap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "903001812630-4fmhnbub20p796najhvd882nskdrsj4l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.firebase.cursoandroid.clonezap",
+            "certificate_hash": "d628672b85729255b4a647b3b407749440358908"
+          }
+        },
+        {
+          "client_id": "903001812630-9hmi3vudkec2jsruuc0bt9p3kg8tber7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4nGv0BFTayR-cOtab5hDBJUdtEOh-R6w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "903001812630-9hmi3vudkec2jsruuc0bt9p3kg8tber7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
