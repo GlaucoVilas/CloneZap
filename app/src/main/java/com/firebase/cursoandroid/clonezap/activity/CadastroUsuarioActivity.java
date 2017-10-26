@@ -1,5 +1,6 @@
 package com.firebase.cursoandroid.clonezap.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,8 @@ import android.widget.Toast;
 
 import com.firebase.cursoandroid.clonezap.R;
 import com.firebase.cursoandroid.clonezap.config.ConfiguracaoFirebase;
+import com.firebase.cursoandroid.clonezap.helper.Base64Custom;
+import com.firebase.cursoandroid.clonezap.helper.Preferencias;
 import com.firebase.cursoandroid.clonezap.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -64,11 +67,15 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Toast.makeText(CadastroUsuarioActivity.this, "Sucesso ao cadastrar usuario!", Toast.LENGTH_SHORT).show();
 
-                    usuario.setId( task.getResult().getUser().getUid() );
+                    String identificadorUsuario = Base64Custom.codificarBase64(usuario.getEmail());
+                    usuario.setId(identificadorUsuario);
                     usuario.salvar();
 
-                    auth.signOut();
-                    finish();
+                    Preferencias preferencias = new Preferencias(CadastroUsuarioActivity.this);
+                    preferencias.salvarDados(identificadorUsuario);
+
+                    abrirLoginUsuario();
+
                 } else {
                     String erroExecao = "";
                     try {
@@ -87,6 +94,12 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void abrirLoginUsuario() {
+        Intent intent = new Intent(CadastroUsuarioActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
 

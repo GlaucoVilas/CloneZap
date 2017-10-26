@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.firebase.cursoandroid.clonezap.R;
 import com.firebase.cursoandroid.clonezap.config.ConfiguracaoFirebase;
+import com.firebase.cursoandroid.clonezap.helper.Base64Custom;
+import com.firebase.cursoandroid.clonezap.helper.Preferencias;
 import com.firebase.cursoandroid.clonezap.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -134,6 +136,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+
+                    Preferencias preferencias = new Preferencias(LoginActivity.this);
+                    String identificadoUsuarioLogado = Base64Custom.codificarBase64(usuario.getEmail());
+                    preferencias.salvarDados(identificadoUsuarioLogado);
+
                     abrirTelaPrincipal();
                     Toast.makeText(LoginActivity.this, "Sucesso ao fazer login!", Toast.LENGTH_SHORT).show();
                 } else {

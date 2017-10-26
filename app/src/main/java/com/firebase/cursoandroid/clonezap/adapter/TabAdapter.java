@@ -1,4 +1,4 @@
-package com.firebase.cursoandroid.clonezap.Adapter;
+package com.firebase.cursoandroid.clonezap.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
