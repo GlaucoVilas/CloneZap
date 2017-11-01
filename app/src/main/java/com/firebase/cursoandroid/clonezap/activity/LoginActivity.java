@@ -20,6 +20,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -28,6 +32,10 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogar;
     private Usuario usuario;
     private FirebaseAuth auth;
+    private String identificadoUsuarioLogado;
+
+    private DatabaseReference databaseReference;
+    private ValueEventListener valueEventListenerUsuario;
 
     /*private EditText nome;
     private EditText ddi;
@@ -137,9 +145,24 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
 
-                    Preferencias preferencias = new Preferencias(LoginActivity.this);
-                    String identificadoUsuarioLogado = Base64Custom.codificarBase64(usuario.getEmail());
-                    preferencias.salvarDados(identificadoUsuarioLogado);
+                    identificadoUsuarioLogado = Base64Custom.codificarBase64(usuario.getEmail());
+
+                    databaseReference = ConfiguracaoFirebase.getFirebaseDatabase().child("usuarios").child(identificadoUsuarioLogado);
+                    valueEventListenerUsuario = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            Usuario usuarioRecuperado = dataSnapshot.getValue(Usuario.class);
+                            Preferencias preferencias = new Preferencias(LoginActivity.this);
+                            preferencias.salvarDados(identificadoUsuarioLogado, usuarioRecuperado.getNome());
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    };
+                    databaseReference.addListenerForSingleValueEvent(valueEventListenerUsuario);
 
                     abrirTelaPrincipal();
                     Toast.makeText(LoginActivity.this, "Sucesso ao fazer login!", Toast.LENGTH_SHORT).show();

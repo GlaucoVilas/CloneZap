@@ -10,19 +10,19 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.firebase.cursoandroid.clonezap.R;
-import com.firebase.cursoandroid.clonezap.model.Contato;
+import com.firebase.cursoandroid.clonezap.model.Conversa;
 
 import java.util.ArrayList;
 
-public class ContatoAdapter extends ArrayAdapter<Contato> {
+public class ConversaAdapter extends ArrayAdapter<Conversa> {
 
-    private ArrayList<Contato> contatos;
+    private ArrayList<Conversa> conversas;
     private Context context;
 
-    public ContatoAdapter(@NonNull Context c, @NonNull ArrayList<Contato> objects) {
+    public ConversaAdapter(Context c, ArrayList<Conversa> objects) {
         super(c, 0, objects);
-        this.contatos = objects;
         this.context = c;
+        this.conversas = objects;
     }
 
     @NonNull
@@ -30,19 +30,18 @@ public class ContatoAdapter extends ArrayAdapter<Contato> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view = null;
 
-        //Verifica se a lista está vazia
-        if (contatos != null) {
+        if (conversas != null) {
             //Inicializar objeto para montagem da view
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             //Montar view a partir do xml
-            view = inflater.inflate(R.layout.lista_contato, parent, false);
+            view = inflater.inflate(R.layout.lista_conversas, parent, false);
             //Recupera elemento para exibição
-            TextView nomeContato = (TextView) view.findViewById(R.id.tv_nome);
-            TextView emailContato = (TextView) view.findViewById(R.id.tv_email);
+            TextView nome = (TextView) view.findViewById(R.id.tv_titulo);
+            TextView ultimaMensagem = (TextView) view.findViewById(R.id.tv_subtitulo);
 
-            Contato contato = contatos.get(position);
-            nomeContato.setText(contato.getNome());
-            emailContato.setText(contato.getEmail());
+            Conversa conversa = conversas.get(position);
+            nome.setText(conversa.getNome());
+            ultimaMensagem.setText(conversa.getMensagem());
         }
         return view;
     }

@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     tools:context="com.firebase.cursoandroid.clonezap.fragment.ConversasFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textView"
+    <ListView
+        android:id="@+id/lv_conversas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Conversas" />
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp" />
 
 </FrameLayout>
